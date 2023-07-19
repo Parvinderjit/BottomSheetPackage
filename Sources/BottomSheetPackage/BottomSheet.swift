@@ -282,11 +282,6 @@ open class BottomSheetSwiftUIVC<Content: View> : BottomSheetController {
         return view
     }
     
-    open override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        print("Did layout subviews")
-    }
-    
     open override func viewDidLoad() {
         let hosting = SelfSizingHostingController(rootView: c())
         hosting.view.backgroundColor = .clear
