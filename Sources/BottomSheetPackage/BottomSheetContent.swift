@@ -29,7 +29,10 @@ public struct BottomSheetContent<ContentBody: View> : View {
     var corners: CGFloat = 8
     var contentBody: () -> ContentBody
     
-    public init(backgroundColor: Color, corners: CGFloat, contentBody: @escaping () -> ContentBody) {
+    public init(backgroundColor: Color = .white,
+                corners: CGFloat = 8,
+                contentBody: @escaping () -> ContentBody
+    ) {
         self.backgroundColor = backgroundColor
         self.corners = corners
         self.contentBody = contentBody
