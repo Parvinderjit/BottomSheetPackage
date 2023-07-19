@@ -29,6 +29,12 @@ public struct BottomSheetContent<ContentBody: View> : View {
     var corners: CGFloat = 8
     var contentBody: () -> ContentBody
     
+    public init(backgroundColor: Color, corners: CGFloat, contentBody: @escaping () -> ContentBody) {
+        self.backgroundColor = backgroundColor
+        self.corners = corners
+        self.contentBody = contentBody
+    }
+    
     public var body: some View {
         ZStack {
             VStack {
