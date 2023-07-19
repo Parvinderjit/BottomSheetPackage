@@ -248,7 +248,7 @@ class BottomSheetTransisitioningAnimation: NSObject, UIViewControllerAnimatedTra
     
 }
 
-public class BottomSheetSUIVC<Content: View> : BottomSheetController {
+open class BottomSheetSwiftUIVC<Content: View> : BottomSheetController {
     
     private var topInset: CGFloat = 80
     
@@ -267,7 +267,7 @@ public class BottomSheetSUIVC<Content: View> : BottomSheetController {
         awakeFromNib()
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -282,12 +282,12 @@ public class BottomSheetSUIVC<Content: View> : BottomSheetController {
         return view
     }
     
-    public override func viewDidLayoutSubviews() {
+    open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         print("Did layout subviews")
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         let hosting = SelfSizingHostingController(rootView: c())
         hosting.view.backgroundColor = .clear
         hosting.view.translatesAutoresizingMaskIntoConstraints = false
