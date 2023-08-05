@@ -335,6 +335,16 @@ open class BottomSheetSwiftUIVC<Content: View> : BottomSheetController {
         }
         super.viewDidLoad()
     }
+    
+    open func disableOutsideDimiss(disable: Bool = true) -> Self {
+        self.canDismissmissOutsideTap = !disable
+        return self
+    }
+    
+    open func disablePanDimiss(disable: Bool = true) -> Self {
+        self.disablePanGesture = disable
+        return self
+    }
 }
 
 class SelfSizingHostingController<Content>: UIHostingController<Content> where Content: View {
