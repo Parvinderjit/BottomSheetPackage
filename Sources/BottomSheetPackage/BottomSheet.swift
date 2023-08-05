@@ -42,6 +42,13 @@ public class BottomSheetControllerHandler: NSObject, UIGestureRecognizerDelegate
         }
     }
     
+    var canHideOutsideTap: Bool = true
+    var disablePanGesture: Bool = false {
+        didSet {
+            _panGesture?.isEnabled = !disablePanGesture
+        }
+    }
+    
     var userInitiatedDismissCallback: (()->Void)?
     var heigthOfView: CGFloat!
     var percentageCompleted:CGFloat = 0.0
@@ -112,6 +119,7 @@ public class BottomSheetControllerHandler: NSObject, UIGestureRecognizerDelegate
     }
     
     @objc func _dismissSelf(_ tapGesture: UITapGestureRecognizer) {
+        if !canHideOutsideTap { return }
         let locationInControllerView = tapGesture.location(in: _controller?.view)
         if let contentView = _controller?.contentView, contentView.frame.contains(locationInControllerView) {
             return
@@ -148,6 +156,24 @@ open class BottomSheetController: UIViewController, BottomSheet {
     private(set) lazy var handler = BottomSheetControllerHandler(of: self)
     @IBOutlet var contentViewOutlet: UIView?
     private var awaked = false
+    
+    open var canDismissmissOutsideTap: Bool {
+        get {
+            return handler.canHideOutsideTap
+        }
+        set {
+            handler.canHideOutsideTap = newValue
+        }
+    }
+    
+    open var disablePanGesture: Bool {
+        get {
+            handler.disablePanGesture
+        }
+        set {
+            handler.disablePanGesture = newValue
+        }
+    }
    
     open override func awakeFromNib() {
         super.awakeFromNib()
