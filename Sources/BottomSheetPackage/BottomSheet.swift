@@ -7,6 +7,12 @@ public struct BottomSheetHostingView<Content: View>: UIViewControllerRepresentab
     
     var content: () -> Content
     
+    @State
+    private var disableOutsideTap = false
+    
+    @State
+    private var disablePanDismiss = false
+    
     public init(content: @escaping () -> Content) {
         self.content = content
     }
@@ -18,7 +24,16 @@ public struct BottomSheetHostingView<Content: View>: UIViewControllerRepresentab
     }
     
     public func updateUIViewController(_ uiViewController: BottomSheetController, context: Context) {
-        
+        uiViewController.disablePanGesture = self.disablePanDismiss
+        uiViewController.canDismissmissOutsideTap = !self.disableOutsideTap
+    }
+    
+    public func disablePanGesture(disable: Bool = true ) {
+        self.disablePanDismiss = disable
+    }
+    
+    public func disableOutsideDismiss(disable: Bool = true ) {
+        self.disableOutsideTap = disable
     }
 }
 
