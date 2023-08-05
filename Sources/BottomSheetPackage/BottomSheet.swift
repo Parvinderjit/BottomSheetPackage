@@ -89,6 +89,7 @@ public class BottomSheetControllerHandler: NSObject, UIGestureRecognizerDelegate
         panGesture.delegate = self
         _addBottomInsetView()
         self._panGesture = panGesture
+        panGesture.isEnabled = !disablePanGesture
     }
     
     private func _addBottomInsetView() {
